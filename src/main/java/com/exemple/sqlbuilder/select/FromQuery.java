@@ -5,5 +5,8 @@ import com.exemple.sqlbuilder.commands.LimitCommand;
 import com.exemple.sqlbuilder.commands.OrderByCommand;
 import com.exemple.sqlbuilder.commands.WhereCommand;
 
-public interface FromQuery extends WhereCommand<WhereQuery>, OrderByCommand<OrderByQuery>, LimitCommand<LimitQuery>, SqlQuery {
+public interface FromQuery extends
+        WhereCommand<WhereQuery>,
+        OrderByCommand<OrderByQuery>,
+        LimitCommand<LimitQuery>, SqlQuery {
 }
