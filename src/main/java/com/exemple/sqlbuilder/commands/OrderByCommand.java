@@ -4,7 +4,7 @@ public interface OrderByCommand<T> {
 
     T orderBy(String column);
 
-    T orderBy(String column, Order oder);
+    T orderBy(String column, Order order);
 
     enum Order { ASC, DESC }
 
