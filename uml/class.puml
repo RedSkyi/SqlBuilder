@@ -1,0 +1,45 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+package commands {
+    interface SelectCommand<T> {
+        +select(columns: String...): T
+    }
+
+    interface FromCommand<T> {
+        +from(table: String): T
+    }
+
+    interface WhereCommand<T> {
+       +where(condition: String): T
+    }
+
+    note "to complete" as N1
+}
+
+package select {
+    interface SelectQuery implements FromCommand
+    interface FromQuery implements WhereCommand, SqlQuery
+    interface WhereQuery implements SqlQuery
+
+    class SelectQueryBuilder implements FromQuery, WhereQuery, SqlQuery
+
+    note "to complete" as N2
+}
+
+note "Same for every possible query" as N3
+
+interface SqlQuery {
+    +build(): String
+}
+
+class SqlBuilder implements SelectCommand
+
+SqlBuilder ..> SelectQueryBuilder: <<creates>>
+
+WhereQuery --> SqlQuery
+FromQuery --> SqlQuery
+FromQuery --> WhereQuery
+SelectQuery --> FromQuery
+
+@enduml
