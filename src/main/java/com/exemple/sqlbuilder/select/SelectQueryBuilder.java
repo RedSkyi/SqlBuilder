@@ -1,8 +1,6 @@
 package com.exemple.sqlbuilder.select;
 
-import com.exemple.sqlbuilder.commands.WhereCommand;
-
-public class SelectQueryBuilder implements SelectQuery, FromQuery, LimitQuery, OrderByQuery, WhereQuery, WhereCommand<WhereQuery> {
+public class SelectQueryBuilder implements SelectQuery, FromQuery, LimitQuery, OrderByQuery, WhereQuery {
 
     private final StringBuilder builder = new StringBuilder();
 
