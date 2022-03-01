@@ -4,8 +4,7 @@ import com.exemple.sqlbuilder.SqlQuery;
 import com.exemple.sqlbuilder.commands.*;
 
 public interface WhereQuery extends
-        OrCommand<OrQuery>,
-        AndCommand<AndQuery>,
+        WhereCommand<WhereQuery>,
         OrderByCommand<OrderByQuery>,
         LimitCommand<LimitQuery>,
         SqlQuery {
