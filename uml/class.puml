@@ -35,11 +35,10 @@ interface SqlQuery {
 
 class SqlBuilder implements SelectCommand
 
-SqlBuilder ..> SelectQueryBuilder: <<creates>>
+SelectQuery ..> FromCommand: <<bind>> T::FromQuery
 
 WhereQuery --> SqlQuery
 FromQuery --> SqlQuery
 FromQuery --> WhereQuery
-SelectQuery --> FromQuery
 
 @enduml
