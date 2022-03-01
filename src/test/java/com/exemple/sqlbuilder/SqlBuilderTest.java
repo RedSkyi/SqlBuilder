@@ -12,11 +12,10 @@ class SqlBuilderTest {
 
     public void test() {
         System.out.println(
-            new SqlBuilder()
-                    .select("nom", "prenom")
+            SqlBuilder.select("nom", "prenom")
                     .from("users")
                     .where("nom = Jean")
-                    .and().where("prenom = Pierre")
+                    .where("prenom = Pierre")
                     .orderBy("nom", OrderByCommand.Order.ASC)
                     .limit(5)
                     .build()
