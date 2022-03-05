@@ -1,5 +1,8 @@
 package com.exemple.sqlbuilder.select;
 
+/**
+ * Describes the state of a select statement
+ */
 public interface SelectQuery {
 
     /**

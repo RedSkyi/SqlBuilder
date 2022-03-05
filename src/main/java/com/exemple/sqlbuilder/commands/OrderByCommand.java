@@ -1,5 +1,9 @@
 package com.exemple.sqlbuilder.commands;
 
+/**
+ * Describes the 'order by' statement
+ * @param <T> the next state to return
+ */
 public interface OrderByCommand<T> {
 
     /**

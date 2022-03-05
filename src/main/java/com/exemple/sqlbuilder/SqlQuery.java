@@ -1,5 +1,8 @@
 package com.exemple.sqlbuilder;
 
+/**
+ * Describes a finished query
+ */
 public interface SqlQuery {
 
     /**

@@ -1,5 +1,9 @@
 package com.exemple.sqlbuilder.commands;
 
+/**
+ * Describes the limit statement
+ * @param <T> the next state to return
+ */
 public interface LimitCommand<T> {
 
     /**

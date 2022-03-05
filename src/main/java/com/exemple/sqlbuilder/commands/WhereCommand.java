@@ -1,5 +1,9 @@
 package com.exemple.sqlbuilder.commands;
 
+/**
+ * Describes the where statement
+ * @param <T> the next state to return
+ */
 public interface WhereCommand<T> {
 
     /**
