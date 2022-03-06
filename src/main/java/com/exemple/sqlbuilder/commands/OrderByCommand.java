@@ -22,6 +22,19 @@ public interface OrderByCommand<T> {
      */
     T orderBy(String column, Order order);
 
-    enum Order { ASC, DESC }
+    /**
+     * List how to order the result in the query
+     */
+    enum Order {
+        /**
+         * Ascending order
+         */
+        ASC,
+
+        /**
+         * Descending order
+         */
+        DESC
+    }
 
 }
