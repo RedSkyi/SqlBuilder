@@ -26,9 +26,13 @@ package commands {
 }
 
 package select {
-    interface FromQuery extends WhereCommand, OrderByCommand, LimitCommand, SqlQuery
+    FromQuery --|> WhereCommand : <<bind>>T::String
+    FromQuery --|> OrderByCommand : <<bind>>T::String
+    FromQuery --|> LimitCommand : <<bind>>T::String
+    interface FromQuery extends SqlQuery
     interface LimitQuery extends SqlQuery
-    interface OrderByQuery extends LimitCommand
+    OrderByQuery --|> LimitCommand : <<bind>>T::String
+    interface OrderByQuery
     interface SelectQuery {
         +from(table: String): FromQuery
     }
@@ -45,7 +49,10 @@ package select {
         +where(condition: String): WhereQuery <<override>>
     }
 
-    interface WhereQuery extends WhereCommand, OrderByCommand, LimitCommand, SqlQuery
+    WhereQuery --|> WhereCommand : <<bind>>T::String
+    WhereQuery --|> OrderByCommand : <<bind>>T::String
+    WhereQuery --|> LimitCommand : <<bind>>T::String
+    interface WhereQuery extends SqlQuery
 
 }
 interface SqlQuery {
