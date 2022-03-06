@@ -1,44 +1,71 @@
 @startuml
+
+
 'https://plantuml.com/class-diagram
 
 package commands {
-    interface SelectCommand<T> {
-        +select(columns: String...): T
-    }
-
-    interface FromCommand<T> {
-        +from(table: String): T
-    }
 
     interface WhereCommand<T> {
        +where(condition: String): T
     }
 
-    note "to complete" as N1
+    interface LimitCommand<T>{
+        +limit(limit: Integer): T
+    }
+
+    interface OrderByCommand<T> {
+        +orderBy(columns: String): T
+        +orderBy((columns: String, order: Order): T
+    }
+    Order -+ OrderByCommand : <<has>>
+
+    enum Order {
+        ASC,
+        DESC
+    }
 }
 
 package select {
-    interface SelectQuery implements FromCommand
-    interface FromQuery implements WhereCommand, SqlQuery
-    interface WhereQuery implements SqlQuery
+    class SelectQueryBuilder implements SelectQuery, FromQuery, LimitQuery, OrderByQuery, WhereQuery {
+        -builder: StringBuilder {readOnly}
+        -hasWhere: Boolean
+        +SelectQueryBuilder(columns: String...)
+        +from(table: String): FromQuery <<override>>
+        +build(): String <<override>>
+        +limit(limit: Integer): LimitQuery <<override>>
+        +orderBy(column: String): OrderByQuery <<override>>
+        +orderBy(column: String, order: Order): OrderByQuery <<override>>
+        +where(condition: String): WhereQuery <<override>>
+    }
 
-    class SelectQueryBuilder implements FromQuery, WhereQuery, SqlQuery
+    interface SelectQuery {
+        +from(table: String): FromQuery
+    }
 
-    note "to complete" as N2
+    interface FromQuery extends SqlQuery
+    FromQuery --|> WhereCommand : <<bind>>T::WhereCommand
+    FromQuery --|> OrderByCommand : <<bind>>T::OrderByCommand
+    FromQuery --|> LimitCommand : <<bind>>T::LimitCommand
+
+    interface WhereQuery extends SqlQuery
+    WhereQuery --|> WhereCommand : <<bind>>T::WhereQuery
+    WhereQuery --|> OrderByCommand : <<bind>>T::OrderByQuery
+    WhereQuery --|> LimitCommand : <<bind>>T::LimitQuery
+
+    interface OrderByQuery extends SqlQuery
+    OrderByQuery --|> LimitCommand : <<bind>>T::LimitQuery
+
+    interface LimitQuery extends SqlQuery
 }
-
-note "Same for every possible query" as N3
 
 interface SqlQuery {
     +build(): String
 }
 
-class SqlBuilder implements SelectCommand
+class SqlBuilder{
+    {static}+select(columns: String...): SelectQuery
+}
 
-SelectQuery ..> FromCommand: <<bind>> T::FromQuery
-
-WhereQuery --> SqlQuery
-FromQuery --> SqlQuery
-FromQuery --> WhereQuery
+SqlBuilder ..> SelectQueryBuilder: <<creates>>
 
 @enduml
