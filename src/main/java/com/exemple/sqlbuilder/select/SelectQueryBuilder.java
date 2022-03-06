@@ -1,11 +1,24 @@
 package com.exemple.sqlbuilder.select;
 
+/**
+ * Implements all interfaces of select query states
+ */
 public class SelectQueryBuilder implements SelectQuery, FromQuery, LimitQuery, OrderByQuery, WhereQuery {
 
+    /**
+     * Contains the query in construction
+     */
     private final StringBuilder builder = new StringBuilder();
 
+    /**
+     * If the query in construction already has a where clause
+     */
     private boolean hasWhere = false;
 
+    /**
+     * Creates a select query
+     * @param columns specified columns to select in the query
+     */
     public SelectQueryBuilder(String... columns) {
         if(columns.length == 0) throw new IllegalArgumentException("Cannot select anything");
 

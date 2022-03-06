@@ -1,5 +1,9 @@
 package com.exemple.sqlbuilder.commands;
 
+/**
+ * Describes the 'order by' statement
+ * @param <T> the next state to return
+ */
 public interface OrderByCommand<T> {
 
     /**
@@ -18,6 +22,19 @@ public interface OrderByCommand<T> {
      */
     T orderBy(String column, Order order);
 
-    enum Order { ASC, DESC }
+    /**
+     * List how to order the result in the query
+     */
+    enum Order {
+        /**
+         * Ascending order
+         */
+        ASC,
+
+        /**
+         * Descending order
+         */
+        DESC
+    }
 
 }

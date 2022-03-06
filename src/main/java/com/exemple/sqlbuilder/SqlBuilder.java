@@ -3,6 +3,9 @@ package com.exemple.sqlbuilder;
 import com.exemple.sqlbuilder.select.SelectQuery;
 import com.exemple.sqlbuilder.select.SelectQueryBuilder;
 
+/**
+ * The entry point of every SQL buildable queries
+ */
 public class SqlBuilder {
 
     /**
