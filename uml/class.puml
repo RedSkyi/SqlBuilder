@@ -17,15 +17,12 @@ package commands {
         +orderBy(columns: String): T
         +orderBy((columns: String, order: Order): T
     }
-    OrderByCommand --> Order : <<has>>
+    OrderByCommand -+ Order : <<has>>
 
     enum Order {
         ASC,
         DESC
     }
-
-
-
 }
 
 package select {
