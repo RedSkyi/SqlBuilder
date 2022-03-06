@@ -17,7 +17,7 @@ package commands {
         +orderBy(columns: String): T
         +orderBy((columns: String, order: Order): T
     }
-    OrderByCommand -+ Order : <<has>>
+    Order -+ OrderByCommand : <<has>>
 
     enum Order {
         ASC,
@@ -56,29 +56,6 @@ package select {
     OrderByQuery --|> LimitCommand : <<bind>>T::LimitQuery
 
     interface LimitQuery extends SqlQuery
-    OrderByQuery --|> LimitCommand : <<bind>>T::String
-    interface OrderByQuery
-    interface SelectQuery {
-        +from(table: String): FromQuery
-    }
-
-    class SelectQueryBuilder implements SelectQuery, FromQuery, LimitQuery, OrderByQuery, WhereQuery {
-        -builder: StringBuilder{readOnly}
-        -hasWhere: Boolean
-        +SelectQueryBuilder(columns: String...)
-        +from(table: String): FromQuery <<override>>
-        +build(): String <<override>>
-        +limit(limit: Integer): LimitQuery <<override>>
-        +orderBy(column: String): OrderByQuery <<override>>
-        +orderBy(column: String, order: Order): OrderByQuery <<override>>
-        +where(condition: String): WhereQuery <<override>>
-    }
-
-    WhereQuery --|> WhereCommand : <<bind>>T::String
-    WhereQuery --|> OrderByCommand : <<bind>>T::String
-    WhereQuery --|> LimitCommand : <<bind>>T::String
-    interface WhereQuery extends SqlQuery
-
 }
 
 interface SqlQuery {
@@ -89,15 +66,6 @@ class SqlBuilder{
     {static}+select(columns: String...): SelectQuery
 }
 
-
 SqlBuilder ..> SelectQueryBuilder: <<creates>>
-
-
-
-'Relation je suis pas sur'
-WhereQuery --> SqlQuery
-FromQuery --> SqlQuery
-FromQuery --> WhereQuery
-SelectQuery --> FromQuery
 
 @enduml
