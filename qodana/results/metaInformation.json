@@ -1,0 +1,16 @@
+{
+  "total": 0,
+  "tools inspection": {
+    "Code Inspection": 0
+  },
+  "attributes": {
+    "vcs": {
+      "sarifIdea": {
+        "repositoryUri": "https://github.com/RedSkyi/SqlBuilder",
+        "revisionId": "4de738f7a0ea3215f8b66983bba2bf080878a234",
+        "branch": "main"
+      }
+    },
+    "deviceId": "200820300000000-6052-684c-c2cd-b2668df26d82"
+  }
+}
