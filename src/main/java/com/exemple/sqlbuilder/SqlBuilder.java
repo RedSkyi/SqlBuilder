@@ -1,13 +1,19 @@
 package com.exemple.sqlbuilder;
 
-import com.exemple.sqlbuilder.commands.SelectCommand;
 import com.exemple.sqlbuilder.select.SelectQuery;
 import com.exemple.sqlbuilder.select.SelectQueryBuilder;
 
-public class SqlBuilder implements SelectCommand<SelectQuery> {
+/**
+ * The entry point of every SQL buildable queries
+ */
+public class SqlBuilder {
 
-    @Override
-    public SelectQuery select(String... columns) {
+    /**
+     * Creates a select query
+     * @param columns specified columns to select in the query
+     * @return a select query builder
+     */
+    public static SelectQuery select(String... columns) {
         return new SelectQueryBuilder(columns);
     }
 }

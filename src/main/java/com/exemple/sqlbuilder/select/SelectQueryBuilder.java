@@ -1,9 +1,24 @@
 package com.exemple.sqlbuilder.select;
 
-public class SelectQueryBuilder implements SelectQuery, FromQuery, LimitQuery, OrderByQuery, WhereQuery, AndQuery, OrQuery {
+/**
+ * Implements all interfaces of select query states
+ */
+public class SelectQueryBuilder implements SelectQuery, FromQuery, LimitQuery, OrderByQuery, WhereQuery {
 
-    private StringBuilder builder = new StringBuilder();
+    /**
+     * Contains the query in construction
+     */
+    private final StringBuilder builder = new StringBuilder();
 
+    /**
+     * If the query in construction already has a where clause
+     */
+    private boolean hasWhere = false;
+
+    /**
+     * Creates a select query
+     * @param columns specified columns to select in the query
+     */
     public SelectQueryBuilder(String... columns) {
         if(columns.length == 0) throw new IllegalArgumentException("Cannot select anything");
 
@@ -42,19 +57,9 @@ public class SelectQueryBuilder implements SelectQuery, FromQuery, LimitQuery, O
 
     @Override
     public WhereQuery where(String condition) {
-        builder.append(" WHERE ").append(condition);
-        return this;
-    }
-
-    @Override
-    public AndQuery and() {
-        builder.append(" AND");
-        return this;
-    }
-
-    @Override
-    public OrQuery or() {
-        builder.append(" OR");
+        if(hasWhere) builder.append(" AND ");
+        builder.append(" WHERE ").append(condition).append(" ");
+        hasWhere = true;
         return this;
     }
 }

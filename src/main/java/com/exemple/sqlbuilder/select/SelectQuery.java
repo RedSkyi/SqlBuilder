@@ -1,6 +1,15 @@
 package com.exemple.sqlbuilder.select;
 
-import com.exemple.sqlbuilder.commands.FromCommand;
+/**
+ * Describes the state of a select statement
+ */
+public interface SelectQuery {
 
-public interface SelectQuery extends FromCommand<FromQuery> {
+    /**
+     * Add a from statement to the query in construction
+     * @param table specified table to gather information from
+     * @return the next state of the query
+     */
+    FromQuery from(String table);
+
 }
