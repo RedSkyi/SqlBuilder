@@ -26,10 +26,35 @@ package commands {
 }
 
 package select {
-    FromQuery --|> WhereCommand : <<bind>>T::String
-    FromQuery --|> OrderByCommand : <<bind>>T::String
-    FromQuery --|> LimitCommand : <<bind>>T::String
+    class SelectQueryBuilder implements SelectQuery, FromQuery, LimitQuery, OrderByQuery, WhereQuery {
+        -builder: StringBuilder {readOnly}
+        -hasWhere: Boolean
+        +SelectQueryBuilder(columns: String...)
+        +from(table: String): FromQuery <<override>>
+        +build(): String <<override>>
+        +limit(limit: Integer): LimitQuery <<override>>
+        +orderBy(column: String): OrderByQuery <<override>>
+        +orderBy(column: String, order: Order): OrderByQuery <<override>>
+        +where(condition: String): WhereQuery <<override>>
+    }
+
+    interface SelectQuery {
+        +from(table: String): FromQuery
+    }
+
     interface FromQuery extends SqlQuery
+    FromQuery --|> WhereCommand : <<bind>>T::WhereCommand
+    FromQuery --|> OrderByCommand : <<bind>>T::OrderByCommand
+    FromQuery --|> LimitCommand : <<bind>>T::LimitCommand
+
+    interface WhereQuery extends SqlQuery
+    WhereQuery --|> WhereCommand : <<bind>>T::WhereQuery
+    WhereQuery --|> OrderByCommand : <<bind>>T::OrderByQuery
+    WhereQuery --|> LimitCommand : <<bind>>T::LimitQuery
+
+    interface OrderByQuery extends SqlQuery
+    OrderByQuery --|> LimitCommand : <<bind>>T::LimitQuery
+
     interface LimitQuery extends SqlQuery
     OrderByQuery --|> LimitCommand : <<bind>>T::String
     interface OrderByQuery
@@ -55,6 +80,7 @@ package select {
     interface WhereQuery extends SqlQuery
 
 }
+
 interface SqlQuery {
     +build(): String
 }
