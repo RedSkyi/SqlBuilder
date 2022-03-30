@@ -20,9 +20,19 @@ public class SelectQueryBuilder implements SelectQuery, FromQuery, LimitQuery, O
      * @param columns specified columns to select in the query
      */
     public SelectQueryBuilder(String... columns) {
+        this(false, columns);
+    }
+
+    /**
+     * Creates a select query
+     * @param distinct if the select statement should be distinct
+     * @param columns specified columns to select in the query
+     */
+    public SelectQueryBuilder(boolean distinct, String... columns) {
         if(columns.length == 0) throw new IllegalArgumentException("Cannot select anything");
 
         builder.append("SELECT ").append(columns[0]);
+        if(distinct) builder.append(" DISTINCT ");
         for (int i = 1; i < columns.length; i++)
             builder.append(", ").append(columns[i]);
     }

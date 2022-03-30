@@ -16,4 +16,8 @@ public class SqlBuilder {
     public static SelectQuery select(String... columns) {
         return new SelectQueryBuilder(columns);
     }
+
+    public static SelectQuery selectDistinct(String... columns) {
+        return new SelectQueryBuilder(true, columns);
+    }
 }
