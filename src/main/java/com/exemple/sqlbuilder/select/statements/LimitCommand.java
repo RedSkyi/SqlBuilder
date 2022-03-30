@@ -1,4 +1,4 @@
-package com.exemple.sqlbuilder.commands;
+package com.exemple.sqlbuilder.select.statements;
 
 /**
  * Describes the limit statement

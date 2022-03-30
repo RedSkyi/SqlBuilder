@@ -1,8 +1,6 @@
 package com.exemple.sqlbuilder;
 
-import com.exemple.sqlbuilder.commands.OrderByCommand;
-
-import static org.junit.jupiter.api.Assertions.*;
+import com.exemple.sqlbuilder.select.statements.OrderByCommand;
 
 class SqlBuilderTest {
 
