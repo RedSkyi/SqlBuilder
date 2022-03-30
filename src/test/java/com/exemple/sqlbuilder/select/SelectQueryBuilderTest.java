@@ -45,6 +45,9 @@ class SelectQueryBuilderTest {
 
     @Test
     void build() {
+        assertEquals(
+                "SELECT col FROM table WHERE col = true",
+                builder.select("col").from("table").where("col = true").build());
     }
 
     @Test
