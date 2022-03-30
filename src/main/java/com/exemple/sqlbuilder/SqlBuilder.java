@@ -14,10 +14,10 @@ public class SqlBuilder {
      * @return a select query builder
      */
     public static SelectQuery select(String... columns) {
-        return new SelectQueryBuilder(columns);
+        return new SelectQueryBuilder().select(columns);
     }
 
     public static SelectQuery selectDistinct(String... columns) {
-        return new SelectQueryBuilder(true, columns);
+        return new SelectQueryBuilder().select(true, columns);
     }
 }
