@@ -69,7 +69,7 @@ public class SelectQueryBuilder implements SelectQuery, FromQuery, LimitQuery, O
     @Override
     public WhereQuery where(String condition) {
         if(hasWhere) builder.append(" AND ");
-        builder.append(" WHERE ").append(condition).append(" ");
+        builder.append(" WHERE ").append(condition);
         hasWhere = true;
         return this;
     }
