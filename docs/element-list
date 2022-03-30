@@ -1,3 +1,4 @@
 com.exemple.sqlbuilder
 com.exemple.sqlbuilder.commands
 com.exemple.sqlbuilder.select
+com.exemple.sqlbuilder.select.statements
