@@ -16,7 +16,12 @@ public class SqlBuilder {
     public static SelectQuery select(String... columns) {
         return new SelectQueryBuilder().select(columns);
     }
-
+    
+    /**
+     * Creates a select query with distinct argument
+     * @param columns specified columns to select in the query
+     * @return a select query builder
+     */
     public static SelectQuery selectDistinct(String... columns) {
         return new SelectQueryBuilder().select(true, columns);
     }
