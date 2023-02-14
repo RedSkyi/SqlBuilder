@@ -5,8 +5,8 @@ SqlBuilder is Java librairie who enables you to simply create with a elegant way
 ---
 
 ### Links:
- * Doc
- * Code Quality
+ * [Doc](https://verinantoine.github.io/SqlBuilder/docs/)
+ * [Code Quality](https://verinantoine.github.io/SqlBuilder/qodana/)
 
 ---
 
