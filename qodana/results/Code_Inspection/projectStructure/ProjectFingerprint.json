@@ -4,6 +4,8 @@
     "SVG",
     "Plain text",
     "XML",
-    ".gitignore (GitIgnore)"
+    ".gitignore (GitIgnore)",
+    "YAML",
+    "textmate"
   ]
 }

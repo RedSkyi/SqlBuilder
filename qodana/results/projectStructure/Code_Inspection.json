@@ -21,7 +21,7 @@
       ],
       "orderEntries": [
         {
-          "name": "jbr-11",
+          "name": "corretto-16",
           "type": "SDK"
         },
         {
